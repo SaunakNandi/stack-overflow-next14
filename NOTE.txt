@@ -1,2 +1,3 @@
 ACTION FOLDER INSIDE LIB IS FOR CONNECTING BACKEND TO FRONTEND
 
+We made layout.tsx for auth because we will not include any footer or header in sign-in, sign-up pages
