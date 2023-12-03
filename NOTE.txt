@@ -1,3 +1,13 @@
 ACTION FOLDER INSIDE LIB IS FOR CONNECTING BACKEND TO FRONTEND
 
 We made layout.tsx for auth because we will not include any footer or header in sign-in, sign-up pages
+
+
+ClerkProvider -> 
+We are using ClerkProvider for authentication.
+Since we need to apply auth functionalities for the entire application we are wrapping everything under <ClerkProvider> as shown 
+in app>Layout.tsx
+
+
+=> It is not possible to invoke a client function from the server. It can be rendered as a component or passed to props
+of a Client component
