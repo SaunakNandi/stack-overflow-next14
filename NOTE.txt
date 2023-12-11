@@ -11,3 +11,6 @@ in app>Layout.tsx
 
 => It is not possible to invoke a client function from the server. It can be rendered as a component or passed to props
 of a Client component
+
+
+usePathname() - using usePathname hook which is a client side hook we can access the current pathname or url

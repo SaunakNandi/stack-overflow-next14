@@ -39,6 +39,7 @@ export default function RootLayout({
               }
             }
           }>
+         
           <ThemeProvider>
             {children}  {/* now every pages will have access to whatever ClerkProvider and ThemeProvider provides*/}
           </ThemeProvider>

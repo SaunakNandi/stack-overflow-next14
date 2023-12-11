@@ -20,28 +20,36 @@ const ThemeContext=createContext<ThemeContextType | undefined>(undefined)
 // we will wrap the entire app within ThemeProvider
 export function ThemeProvider({children}:{children:React.ReactNode})
 {
+    //console.log("hi")
     const [mode, setMode] = useState('')
 
     // function to toggle to between dark and light mode
+    // "theme" in localStorage -> check if theme exist in localstorage
+    // window.matchMedia("(prefers-color-scheme:dark).matches -> checking if users system prefer dark mode or not
     const handleThemeChange=()=>{
-        if(mode==='dark')
+        if(localStorage.theme==='dark'
+        || (!("theme" in localStorage) 
+        && window.matchMedia("(prefers-color-scheme:dark)").matches))
         {
-            setMode('light')
-            document.documentElement.classList.add('light')
-        }
-        else{
             setMode('dark')
             document.documentElement.classList.add('dark')
         }
+        else{
+            setMode('light')
+            document.documentElement.classList.remove('dark')
+        }
     }
 
+    
     useEffect(() => {
+    //console.log('Mode -> ',mode)
       handleThemeChange()
     }, [mode])
-    
+   // console.log('Mode = ',mode)
 
     return (
         // the values will be available to the children. This is better than props drilling
+        // createContext concept
         <ThemeContext.Provider value={{mode,setMode}}>
             {children}
         </ThemeContext.Provider>
@@ -50,10 +58,11 @@ export function ThemeProvider({children}:{children:React.ReactNode})
 
 export function useTheme()
 {
+    //console.log("hello")
     const context=useContext(ThemeContext)
 
     if(context===undefined)
         throw new Error('useTheme must be used within a ThemeProvider')
 
-        return context
+    return context
 }

@@ -6,11 +6,13 @@
 @layer utilities {
   .background-light850_dark100 {
     /* @apply bg-light bg-opacity-85 dark:bg-dark-100; */
-    @apply bg-light-850 dark:bg-dark-100;
+    /* @apply bg-light-850 dark:bg-dark-100; */
+    @apply dark:bg-dark-100;
+  background-color: rgba(222, 227, 235, 0.85);
   }
 
   .background-light900_dark200 {
-    @apply bg-light-900 dark:bg-dark-200;
+    @apply bg-light-900 dark:bg-dark-300;
   }
 
   .background-light900_dark300 {
