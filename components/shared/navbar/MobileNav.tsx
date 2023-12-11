@@ -28,7 +28,7 @@ export const NavContent=()=>{
             <Link href={item.route}
             className={`${isActive? 'primary-gradient rounded-lg text-light-900'
           :'text-dark300_light900'}
-            flex items-center justify-start gap-4 p-4`}>
+            flex items-center justify-start gap-4  p-4`}>
               {/* invert-colors and invert is same */}
               <Image src={item.imgURL} alt={item.label}
               width={20}
