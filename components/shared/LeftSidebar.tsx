@@ -16,7 +16,7 @@ const LeftSidebar = () => {
     // justify-between such that the element appear in the middle
     // dark:shadow-none - on dark devices no 
     // hide the sidebar for small devices - max-sm:hidden
-    <section className='background-light900_dark200
+  <section className='background-light900_dark200
     light-border custom-scrollbar sticky left-0 top-0 flex
     h-screen flex-col justify-between overflow-y-auto
     border-r p-6 pt-36
@@ -74,8 +74,8 @@ const LeftSidebar = () => {
                   </Button>
                 </Link>
             </div>
-          </SignedOut>
-    </section>
+      </SignedOut>
+  </section>
   )
 }
 
