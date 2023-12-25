@@ -14,3 +14,9 @@ of a Client component
 
 
 usePathname() - using usePathname hook which is a client side hook we can access the current pathname or url
+
+
+In Question.tsx for creating the tag form we saw that at line 184 while doing console.log(field.value) print the value entered by us
+but if the same is done inside the if() in handelInputKeyDown() then we are getting no value. 
+This is because ` form ` is not updated by then.
+

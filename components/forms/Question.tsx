@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import {
   Form,
@@ -16,8 +16,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { QuestionsSchema } from "@/lib/validations";
+import { Badge } from "../ui/badge";
+import Image from "next/image";
 
+const type:any='create'
 const Question = () => {
+
+  const [isSubmitting,setIsSubmitting]=useState(false)
   const editorRef = useRef(null);
 
   // Define your form
@@ -32,10 +37,59 @@ const Question = () => {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof QuestionsSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    
+    setIsSubmitting(true)  // woundn't allow to submit twice
+    try {
+      // make an async call to your API to create a question
+      // api should contan all form data
+      // navigate to home page
+    } catch (error) {
+      
+    }
+    finally{
+
+    }
+    
+    //console.log(values);
   }
+
+
+// when form get updated field automatically gets updated
+  const handelInputKeyDown=(e:React.KeyboardEvent<HTMLInputElement>,
+    field:any)=> {
+    // check if the key is the enter key and the field is of type 'tag'
+    
+    if(e.key==='Enter' && field.name==='tags')
+    {
+      e.preventDefault()  // submit reloads the browser
+      const tagInput=e.target as HTMLInputElement  // fetching the input element
+      const tagValue=tagInput.value.trim()  // trim empty spaces
+      
+      if(tagValue!==''){
+        if(tagValue.length>15)
+        {
+          return form.setError('tags',{
+            type:'required',
+            message:'Tag must be less than 15 characters.'
+          })
+        }
+
+        // tagValue as never means it never going to be a tag value
+        if(!field.value.includes(tagValue as never))  // this tag doesn't exist or ready within the field
+        { 
+          //if tag doesn't exist than do this
+          form.setValue('tags',[...field.value,tagValue])
+          tagInput.value=''
+          form.clearErrors('tags')
+        }
+        //console.log(field.value)
+      }
+      else{
+        form.trigger()
+      }
+    }
+  }
+
   return (
     <Form {...form}>
       <form
@@ -126,7 +180,7 @@ const Question = () => {
         />
         <FormField
           control={form.control}
-          name="title"
+          name="tags"
           render={({ field }) => (
             <FormItem className="flex w-full flex-col">
               <FormLabel
@@ -137,13 +191,33 @@ const Question = () => {
                 <span className="text-primary-500">*</span>
               </FormLabel>
               <FormControl className="mt-3.5">
+                <>
                 <Input
                   className="no-focus paragraph-regular
                 background-light900_dark300 light-border-2
                 text-dark300_light700 min-h-[56px] border"
                   placeholder="Add Tags"
-                  {...field}
+                  onKeyDown={(e)=>handelInputKeyDown(e,field)}
                 />
+                {/* {console.log(field.value)} */}
+                {field.value.length>0 && 
+                  <div className="flex-start mt-2.5 gap-2.5">
+                    {
+                      field.value.map((tag:any)=>(
+                      <Badge key={tag}>
+                        {tag}
+                        <Image
+                        src="/assets/icons/close.svg"
+                        alt="Close icon"
+                        width={12}
+                        height={12}
+                        className="cursor-pointer object-contain invert-0
+                        dark:invert"/>
+                      </Badge>
+                    ))}
+                  </div>
+                }
+                </>
               </FormControl>
               <FormDescription
                 className="body-regular mt-2.5
@@ -157,7 +231,19 @@ const Question = () => {
           )}
         />
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit" 
+        className="primary-gradient w-fit !text-light-900"
+        disabled={isSubmitting}>
+          {isSubmitting?(
+            <>
+              {type==='edit'? "Editing...":"Posting..."}
+            </>
+          ):(
+            <>
+            {type==='edit'?'Edit Question':'Ask a question'}
+            </>
+          )}
+        </Button>
       </form>
     </Form>
   );
