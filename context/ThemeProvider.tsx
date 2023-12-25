@@ -6,7 +6,7 @@ import React, {createContext,useContext,useState,useEffect} from "react"
 
 
 // we created this interface because {set,setMode} is not assiangable to type undefined value={{set,set,setMode}}. 
-// undefined becuase createContext was createContext(undefined) previously.
+// undefined because createContext was createContext(undefined) previously.
 
 interface ThemeContextType{
     mode:string;

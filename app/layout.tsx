@@ -8,7 +8,7 @@ import { ThemeProvider } from '@/context/ThemeProvider'
 const inter=Inter({
   subsets:['latin'],
   weight:['100','200','300','400','500','600','700','800','900'],
-  variable:'--font-weght'
+  variable:'--font-weight'
 })
 const spaceGrotesk=Space_Grotesk({
   subsets:['latin'],
