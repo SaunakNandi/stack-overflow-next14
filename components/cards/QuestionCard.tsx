@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import RenderTag from '../shared/RenderTag'
 import Metric from '../shared/Metric'
-import { formatNumber, getTimeStamp } from '@/lib/utils'
+import { formatAndDivideNumber, getTimestamp } from '@/lib/utils'
 interface QuestionProps{
     _id:string
     title:string
@@ -38,7 +38,7 @@ const QuestionCard = ({
         <div>
           <span className='subtle-regular text-dark400_light700
           flex max-sm:hidden'>
-            {getTimeStamp(createdAt)}
+            {getTimestamp(createdAt)}
           </span>
           <Link href={`/question/${_id}`}>
             <h3 className='sm:h3-semibold text-dark200_light900
@@ -59,26 +59,26 @@ const QuestionCard = ({
             imgUrl="/assets/icons/avatar.svg"
             alt="User"
             value={author.name}
-            title={`- asked ${getTimeStamp(createdAt)}`}
+            title={`- asked ${getTimestamp(createdAt)}`}
             href={`/profile/${author._id}`}
             isAuhtor
             textStyles="body-medium text-dark400_light700"/>
           <Metric
             imgUrl="/assets/icons/like.svg"
             alt="Upvote"
-            value={formatNumber(upvotes)}
+            value={formatAndDivideNumber(upvotes)}
             title="Votes"
             textStyles="small-medium text-dark400_light800"/>
           <Metric
             imgUrl="/assets/icons/message.svg"
             alt="Message"
-            value={formatNumber(answers.length)}
+            value={formatAndDivideNumber(answers.length)}
             title="Answers"
             textStyles="small-medium text-dark400_light800"/>
           <Metric
             imgUrl="/assets/icons/eye.svg"
             alt="eye"
-            value={formatNumber(views)}
+            value={formatAndDivideNumber(views)}
             title="Views"
             textStyles="small-medium text-dark400_light800"/>
       </div>
