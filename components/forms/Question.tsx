@@ -204,7 +204,10 @@ const Question = () => {
                   <div className="flex-start mt-2.5 gap-2.5">
                     {
                       field.value.map((tag:any)=>(
-                      <Badge key={tag}>
+                      <Badge key={tag}
+                      className="subtle-medium background-light800_dark300
+                      text-light400_light500 flex items-center justify-center
+                      gap-2 rounded-md px-4 py-2 capitalize">
                         {tag}
                         <Image
                         src="/assets/icons/close.svg"
