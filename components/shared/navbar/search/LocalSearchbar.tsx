@@ -18,6 +18,7 @@ const LocalSearchbar = ({
   placeholder,
   otherClasses,
 }:CustomInputProps) => {
+  // Icon placed before Input field makes it left and after Input field makes it right
   return (
     <div className={`background-light800_darkgradient flex
     min-h-[56px] grow items-center gap-4
@@ -31,14 +32,14 @@ const LocalSearchbar = ({
       }
       <Input type='text' placeholder={placeholder}
       
-      onChange={()=>{console.log()}}
+      onChange={()=>{console.log("clicked")}}
       className='background-light800_darkgradient paragraph-regular
       no-focus border-none'/>
       { 
-        iconPosition==='right' && (<Image src={imgSrc} 
+        (<Image src={imgSrc} 
         alt='search icon'
         width={24}
-        height={24}
+        height={24} 
         className='cursor-pointer'/>)
       }
     </div>

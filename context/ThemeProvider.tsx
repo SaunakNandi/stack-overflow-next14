@@ -31,6 +31,7 @@ export function ThemeProvider({children}:{children:React.ReactNode})
         || (!("theme" in localStorage) 
         && window.matchMedia("(prefers-color-scheme:dark)").matches))
         {
+            //console.log("called")
             setMode('dark')
             document.documentElement.classList.add('dark')
         }
@@ -45,7 +46,7 @@ export function ThemeProvider({children}:{children:React.ReactNode})
     //console.log('Mode -> ',mode)
       handleThemeChange()
     }, [mode])
-   // console.log('Mode = ',mode)
+    //console.log('Mode = ',mode)
 
     return (
         // the values will be available to the children. This is better than props drilling
@@ -56,6 +57,8 @@ export function ThemeProvider({children}:{children:React.ReactNode})
     )
 }
 
+// tips - use a function to use the context you have created
+
 export function useTheme()
 {
     //console.log("hello")
@@ -64,5 +67,6 @@ export function useTheme()
     if(context===undefined)
         throw new Error('useTheme must be used within a ThemeProvider')
 
+    //console.log(context)
     return context
 }

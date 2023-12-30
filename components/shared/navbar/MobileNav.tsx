@@ -69,7 +69,7 @@ const MobileNav = () => {
             <NavContent></NavContent>
           </SheetClose>
 
-          {/* Only going to work if we sign out */}
+          {/* Display content only if user is signed out */}
           <SignedOut>
             {/* <SheetClose> is a component in the shadcn-ui library that allows you to close sheets. Sheets are modal components 
             that can be used to display additional information or interact with the user in a focused way. */}

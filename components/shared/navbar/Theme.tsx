@@ -18,7 +18,8 @@ import { themes } from '@/constants'
   
 const Theme = () => {
 
-    const {mode,setMode}=useTheme()  //createContext concept
+    let {mode,setMode}=useTheme()  //createContext concept
+    console.log(mode)
   return(
     // Taken menubar component from shadcn/ui
     <Menubar className='relative border-none bg-transparent'>
