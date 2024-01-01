@@ -20,3 +20,38 @@ In Question.tsx for creating the tag form we saw that at line 184 while doing co
 but if the same is done inside the if() in handelInputKeyDown() then we are getting no value. 
 This is because ` form ` is not updated by then.
 
+
+
+// Explaination for the code in question.action.ts
+
+// findOneAndUpdate -> 1st parameter allow us to find something
+//                  -> 2nd ->Allow us to do something on it i.e update
+//                  -> 3rd -> QueryOptions
+
+await Tag.findOneAndUpdate(
+    { name: { $regex: new RegExp(`^${tag}$`, "i") } },  // Query criteria
+    {
+        $setOnInsert: { name: tag },  // Set fields if the document is being inserted
+        $push: { question: question._id }  // Push a value into an array field
+    },
+    {
+        upsert: true,  // If the document does not exist, insert it
+        new: true  // Return the modified document rather than the original
+    }
+);
+
+Query Criteria ({ name: { $regex: new RegExp(^${tag}$, "i") } }):
+
+This specifies the criteria for finding the document to update. It's searching for a document in the "Tag" collection where the "name" field matches the given regular expression. The regular expression is case-insensitive ("i" flag) and ensures that the entire string must match (^ denotes the start, and $ denotes the end).
+Update Fields ($setOnInsert: { name: tag }, $push: { question: question._id }):
+
+If a document is found based on the query criteria, this part defines the updates to be performed.
+$setOnInsert: This sets the "name" field to the value of the variable tag if the document is being inserted (i.e., it didn't exist before).
+$push: This pushes the value of question._id into the "question" array field. This assumes that the "Tag" document has an array field named "question" to which it's adding the ID of a related question.
+Options ({ upsert: true, new: true }):
+
+upsert: true: This option indicates that if no document is found based on the query criteria, a new document should be inserted using the provided update fields.
+new: true: This option specifies that the method should return the modified document rather than the original document.
+In summary, this code attempts to find a document in the "Tag" collection that matches the specified regular expression for the "name" field. 
+If found, it updates the document by setting the "name" field and pushing a question ID into the "question" array. If no matching document is found,
+it inserts a new document with the specified fields. The updated or inserted document is then returned.
