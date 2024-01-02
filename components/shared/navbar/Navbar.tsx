@@ -5,7 +5,8 @@ import Image from 'next/image'
 import { SignedIn, UserButton } from '@clerk/nextjs'
 import Theme from './Theme'
 import MobileNav from './MobileNav'
-import GlobalSearch from './search/GlobalSearch'
+import GlobalSearch from '../search/GlobalSearch'
+
 const Navbar = () => {
   return (
     <nav className="flex-between background-light900_dark200 fixed z-50 w-full gap-5 p-6
