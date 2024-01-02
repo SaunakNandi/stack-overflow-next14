@@ -8,9 +8,9 @@ interface MetricProps{
     title:string
     href?:string
     textStyles?:string
-    isAuhtor?:boolean
+    isAuthor?:boolean
 }
-const Metric = ({imgUrl,alt,value,title,href,textStyles,isAuhtor}:MetricProps) => {
+const Metric = ({imgUrl,alt,value,title,href,textStyles,isAuthor}:MetricProps) => {
   
 // We are trying to put the avatar inside the Link component but we cannot put all the parts(i.e profile name,votes,view) under <Link/>
 // so we put the icons under metricContent and then checking if(href) (only passed by the avatar metric) has url, if yes then put 
@@ -26,7 +26,7 @@ const Metric = ({imgUrl,alt,value,title,href,textStyles,isAuhtor}:MetricProps) =
         <p className={`${textStyles} flex items-center gap-1`}>
             {value}
             <span className={`small-regular
-            ${isAuhtor?'max-sm:hidden': ''}`}>
+            ${isAuthor?'max-sm:hidden': ''}`}>
             {title}
             </span>
         </p>
