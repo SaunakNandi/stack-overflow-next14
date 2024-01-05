@@ -22,7 +22,7 @@ export async function getQuestions(params: GetQuestionsParams) {
 
      return { questions };
   } catch (error) {
-    //console.log(error)
+  console.log(error)
     throw error;
   }
 }
