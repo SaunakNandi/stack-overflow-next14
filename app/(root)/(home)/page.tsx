@@ -1,5 +1,5 @@
 import QuestionCard from "@/components/cards/QuestionCard";
-import { HomeFilters } from "@/components/home/HomeFilters";
+//import { HomeFilters } from "@/components/home/HomeFilters";
 import Filter from "@/components/shared/Filter";
 import NoResult from "@/components/shared/NoResult";
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
@@ -8,6 +8,21 @@ import { HomePageFilters } from "@/constants/filters";
 import { getQuestions } from "@/lib/actions/question.action";
 import Link from "next/link";
 
+export const HomeFilters = () => {
+  const active='newest'
+  return (
+    <div className="mt-10 hidden flex-wrap
+    gap-3 md:flex">
+      {HomePageFilters.map((item)=>(
+        <Button key={item.value}
+        className={`body-medium rounded-lg px-6 py-3
+         capitalize shadow-none ${active===item.value?'bg-primary-100 text-primary-500':
+        'bg-light-800 text-light-500 hover:bg-light-900 dark:bg-dark-300 dark:text-light-500 dark:hover:bg-dark-400'}`}
+        onClick={()=>{}}>{item.name}</Button>
+      ))}
+    </div>
+  )
+}
 export default async function Home() {
   const result = await getQuestions({});
   //console.log(result.questions)
