@@ -11,7 +11,7 @@ import Link from "next/link";
 import { FC } from "react";
 
 
-export const Home:FC=async()=>{
+export const home:FC=async()=>{
   const result = await getQuestions({});
   //console.log(result.questions)
   return (
