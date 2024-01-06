@@ -3,7 +3,7 @@ import { HomePageFilters } from '@/constants/filters'
 import React from 'react'
 import { Button } from '../ui/button'
 
-const HomeFilters = () => {
+export const HomeFilters = () => {
   const active='newest'
   return (
     <div className="mt-10 hidden flex-wrap
@@ -19,4 +19,4 @@ const HomeFilters = () => {
   )
 }
 
-export default HomeFilters
+// export default HomeFilters
