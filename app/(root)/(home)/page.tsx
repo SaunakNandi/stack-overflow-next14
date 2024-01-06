@@ -8,10 +8,10 @@ import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filters";
 import { getQuestions } from "@/lib/actions/question.action";
 import Link from "next/link";
-import { FC } from "react";
+//import { FC } from "react";
 
 
-export const home:FC=async()=>{
+export const home=async()=>{
   const result = await getQuestions({});
   //console.log(result.questions)
   return (

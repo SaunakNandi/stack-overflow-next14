@@ -1,10 +1,10 @@
 "use client"
 
 import { HomePageFilters } from "@/constants/filters"
-import { FC } from "react"
+//import { FC } from "react"
 import { Button } from "../ui/button"
 
-export const HomeFilters:FC = () => {
+export const HomeFilters = () => {
     const active='newest'
     return (
       <div className="mt-10 hidden flex-wrap
